@@ -14,7 +14,7 @@
       create: function(inReducer, inInitialState) {
         var store = new this(inReducer, inInitialState);
         var members = {};
-        store.dispatch({ type: INIT_TYPE });
+        store.initState();
         nx.forEach(PUBLIC_METHODS, function(item) {
           members[item] = store[item].bind(store);
         });
