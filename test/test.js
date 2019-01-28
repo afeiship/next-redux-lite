@@ -4,10 +4,7 @@
 
   describe('NxReduxCore.methods', function () {
     test('init', function () {
-      var data = {
-        key: 1,
-        value: 2
-      };
+      // var store = NxReduxCore.create()
       // console.log(rs1, rs2);
 
       // expect(rs1).toBe(true);

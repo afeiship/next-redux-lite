@@ -83,7 +83,6 @@
           var listener = listeners[i];
           listener();
         }
-        return this;
       }
     }
   });
