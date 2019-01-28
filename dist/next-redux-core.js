@@ -69,16 +69,15 @@
         if (this.isDispatching) {
           nx.error(MSG.DISPATH);
         }
-        var self = this;
-        var listeners;
+
         try {
-          self.isDispatching = true;
-          self.currentState = self.currentReducer(this.currentState, inAction);
+          this.isDispatching = true;
+          this.currentState = this.currentReducer(this.currentState, inAction);
         } finally {
-          self.isDispatching = false;
+          this.isDispatching = false;
         }
 
-        listeners = this.currentListeners = this.nextListeners;
+        var listeners = (this.currentListeners = this.nextListeners);
         for (var i = 0; i < listeners.length; i++) {
           var listener = listeners[i];
           listener();
