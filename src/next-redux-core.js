@@ -2,7 +2,6 @@
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
   var INIT_TYPE = '@@redux/INIT';
-  var PUBLIC_METHODS = ['initState', 'getState', 'dispatch', 'subscribe'];
   var MSG = {
     GET_STATE: 'You may not call store.getState() while the reducer is executing.',
     SUBSCRIBE: 'You may not call store.subscribe() while the reducer is executing.',
@@ -49,8 +48,6 @@
 
         this.ensureCanMutateNextListeners();
         this.nextListeners.push(inHandler);
-
-
 
         return {
           destroy: function() {
