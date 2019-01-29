@@ -13,12 +13,8 @@
     statics: {
       create: function(inReducer, inInitialState) {
         var store = new this(inReducer, inInitialState);
-        var members = {};
         store.initState();
-        nx.forEach(PUBLIC_METHODS, function(item) {
-          members[item] = store[item].bind(store);
-        });
-        return members;
+        return store;
       }
     },
     methods: {
@@ -26,7 +22,7 @@
         this.currentReducer = inReducer;
         this.currentState = inInitialState;
         this.currentListeners = [];
-        this.nextListeners = currentListeners;
+        this.nextListeners = this.currentListeners;
         this.isDispatching = false;
       },
       ensureCanMutateNextListeners: function() {
@@ -52,7 +48,9 @@
         var nextListeners = this.nextListeners;
 
         this.ensureCanMutateNextListeners();
-        nextListeners.push(inHandler);
+        this.nextListeners.push(inHandler);
+
+
 
         return {
           destroy: function() {
