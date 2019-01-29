@@ -38,15 +38,11 @@
         this.dispatch({ type: INIT_TYPE });
       },
       getState: function() {
-        if (this.isDispatching) {
-          nx.error(MSG.GET_STATE);
-        }
+        this.isDispatching && nx.error(MSG.GET_STATE);
         return this.currentState;
       },
       subscribe: function(inHandler) {
-        if (this.isDispatching) {
-          nx.error(MSG.SUBSCRIBE);
-        }
+        this.isDispatching && nx.error(MSG.SUBSCRIBE);
         var isSubscribed = true;
         var self = this;
         var nextListeners = this.nextListeners;
@@ -66,9 +62,7 @@
         };
       },
       dispatch: function(inAction) {
-        if (this.isDispatching) {
-          nx.error(MSG.DISPATH);
-        }
+        this.isDispatching && nx.error(MSG.DISPATH);
 
         try {
           this.isDispatching = true;
