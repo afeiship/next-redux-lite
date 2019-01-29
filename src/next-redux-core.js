@@ -10,6 +10,7 @@
 
   var NxReduxCore = nx.declare('nx.ReduxCore', {
     statics: {
+      INIT_TYPE: INIT_TYPE,
       create: function(inReducer, inInitialState) {
         var store = new this(inReducer, inInitialState);
         store.initState();
