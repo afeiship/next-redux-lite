@@ -27,6 +27,7 @@
     "yargs": "^4.7.1"
   },
   "dependencies": {
+    "next-exports": "github:afeiship/next-exports",
     "next-js-core2": "github:afeiship/next-js-core2"
   }
 }
