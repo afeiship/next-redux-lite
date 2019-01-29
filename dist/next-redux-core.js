@@ -1,7 +1,8 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
-  var INIT_TYPE = '@@redux/INIT';
+  var RANDOM_STR = Math.random().toString(36);
+  var INIT_TYPE = '@@redux/INIT_' + RANDOM_STR;
   var MSG = {
     GET_STATE: 'You may not call store.getState() while the reducer is executing.',
     SUBSCRIBE: 'You may not call store.subscribe() while the reducer is executing.',
@@ -12,9 +13,7 @@
     statics: {
       INIT_TYPE: INIT_TYPE,
       create: function(inReducer, inInitialState) {
-        var store = new this(inReducer, inInitialState);
-        store.initState();
-        return store;
+        return new this(inReducer, inInitialState);
       }
     },
     methods: {
@@ -24,6 +23,11 @@
         this.currentListeners = [];
         this.nextListeners = this.currentListeners;
         this.isDispatching = false;
+
+        // When a store is created, an "INIT" action is dispatched so that every
+        // reducer returns their initial state. This effectively populates
+        // the initial state tree.
+        this.initState();
       },
       ensureCanMutateNextListeners: function() {
         if (this.nextListeners === this.currentListeners) {
