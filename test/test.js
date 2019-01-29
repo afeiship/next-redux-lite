@@ -15,9 +15,10 @@
         test: 123
       });
 
+      console.log('store:->', store);
+
       // initialize:
       console.log(store.getState());
-
 
       store.subscribe(function() {
         console.log('test sub:->>>', store.getState());
@@ -35,8 +36,6 @@
 
         done();
       }, 1000);
-
-      console.log(store);
     });
   });
 })();

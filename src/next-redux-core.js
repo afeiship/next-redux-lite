@@ -1,6 +1,7 @@
 (function() {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('next-js-core2');
+  var PUBLIC_METHODS = ['initState', 'getState', 'subscribe', 'dispatch'];
   var RANDOM_STR = Math.random().toString(36);
   var INIT_TYPE = '@@redux/INIT_' + RANDOM_STR;
   var MSG = {
@@ -13,7 +14,8 @@
     statics: {
       INIT_TYPE: INIT_TYPE,
       create: function(inReducer, inInitialState) {
-        return new this(inReducer, inInitialState);
+        var store = new this(inReducer, inInitialState);
+        return store.exports(this);
       }
     },
     methods: {
@@ -28,6 +30,15 @@
         // reducer returns their initial state. This effectively populates
         // the initial state tree.
         this.initState();
+      },
+      exports: function(inContext) {
+        var self = this;
+        PUBLIC_METHODS.forEach(function(method) {
+          inContext[method] = function() {
+            self[method].apply(self, arguments);
+          };
+        });
+        return inContext;
       },
       ensureCanMutateNextListeners: function() {
         if (this.nextListeners === this.currentListeners) {
