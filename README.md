@@ -9,6 +9,7 @@ npm install -S afeiship/redux-core --registry=https://registry.npm.taobao.org
 ## apis:
 | api       | args                   | description              |
 |-----------|------------------------|--------------------------|
+| INIT_TYPE | -                      | @@redux/INIT.0.init_type |
 | create    | reducers, initialState | redux.createStore        |
 | initState | -                      | dispatch INIT_TYPE state |
 | getState  | -                      | redux.getState           |
