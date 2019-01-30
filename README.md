@@ -18,7 +18,23 @@ npm install -S afeiship/redux-core --registry=https://registry.npm.taobao.org
 ## usage:
 ```js
 import NxReduxCore from 'redux-core';
+
+// create a redux store:
 const store = NxReduxCore.create(reducers, {
   test: 123
 });
+
+// subscribe the store:
+store.subscribe(()=>{
+  console.log('get!')
+});
+
+// dispath:
+store.dispatch({
+  type:'INC',
+  data: 1
+});
+
+// get latest state:
+store.getState();
 ```
