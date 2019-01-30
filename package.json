@@ -1,8 +1,8 @@
 {
-  "name": "next-redux-core",
+  "name": "redux-core",
   "version": "1.0.0",
   "description": "Redux core based on next.",
-  "homepage": "https://github.com/afeiship/next-redux-core",
+  "homepage": "https://github.com/afeiship/redux-core",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"
@@ -12,7 +12,7 @@
     "test": "jest",
     "version": "gulp bump"
   },
-  "main": "dist/next-redux-core.js",
+  "main": "dist/redux-core.js",
   "license": "MIT",
   "devDependencies": {
     "del": "^2.2.1",
