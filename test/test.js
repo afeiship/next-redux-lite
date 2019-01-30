@@ -1,6 +1,6 @@
 (function() {
   var nx = require('next-js-core2');
-  var NxReduxCore = require('../src/next-redux-core');
+  var NxReduxCore = require('../src/redux-core');
 
   var reducers = function(inState, inAction) {
     var type = inAction.type;

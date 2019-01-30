@@ -5,3 +5,20 @@
 ```bash
 npm install -S afeiship/redux-core --registry=https://registry.npm.taobao.org
 ```
+
+## apis:
+| api       | args                   | description              |
+|-----------|------------------------|--------------------------|
+| create    | reducers, initialState | redux.createStore        |
+| initState | -                      | dispatch INIT_TYPE state |
+| getState  | -                      | redux.getState           |
+| subscribe | listener               | redux.subscribe          |
+| dispatch  | action                 | redux.dispatch           |
+
+## usage:
+```js
+import NxReduxCore from 'redux-core';
+const store = NxReduxCore.create(reducers, {
+  test: 123
+});
+```
