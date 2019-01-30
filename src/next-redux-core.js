@@ -53,14 +53,12 @@
         this.ensureCanMutateNextListeners();
         this.nextListeners.push(inHandler);
 
-        return {
-          destroy: function() {
-            if (isSubscribed) {
-              isSubscribed = false;
-              self.ensureCanMutateNextListeners();
-              var index = nextListeners.indexOf(inHandler);
-              nextListeners.splice(index, 1);
-            }
+        return function() {
+          if (isSubscribed) {
+            isSubscribed = false;
+            self.ensureCanMutateNextListeners();
+            var index = nextListeners.indexOf(inHandler);
+            nextListeners.splice(index, 1);
           }
         };
       },
