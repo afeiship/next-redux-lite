@@ -1,6 +1,6 @@
 (function() {
   var nx = require('next-js-core2');
-  var ReduxCore = require('../src/redux-core');
+  var ReduxLite = require('../src/redux-lite');
 
   var reducers = function(inState, inAction) {
     var type = inAction.type;
@@ -9,9 +9,9 @@
     return nx.mix(inState, data);
   };
 
-  describe('ReduxCore.methods', function() {
+  describe('ReduxLite.methods', function() {
     test('init', function(done) {
-      var store = ReduxCore.create(reducers, {
+      var store = ReduxLite.create(reducers, {
         test: 123
       });
 

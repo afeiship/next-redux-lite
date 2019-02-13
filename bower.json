@@ -1,7 +1,7 @@
 {
-  "name": "next-redux-core",
-  "description": "Redux core based on next.",
-  "main": "dist/next-redux-core.js",
+  "name": "redux-lite",
+  "description": "Lightweight version of the redux library",
+  "main": "dist/redux-lite.js",
   "authors": [
     "afei"
   ],
@@ -9,7 +9,7 @@
   "keywords": [
     "next"
   ],
-  "homepage": "https://github.com/afeiship/next-redux-core",
+  "homepage": "https://github.com/afeiship/redux-lite",
   "moduleType": [
     "amd"
   ],
