@@ -8,7 +8,7 @@
   var MSG = {
     GET_STATE: 'You may not call store.getState() while the reducer is executing.',
     SUBSCRIBE: 'You may not call store.subscribe() while the reducer is executing.',
-    DISPATH: 'Reducers may not dispatch actions.'
+    DISPATCH: 'Reducers may not dispatch actions.'
   };
 
   var NxReduxCore = nx.declare('nx.ReduxLite', {
@@ -63,7 +63,7 @@
         };
       },
       dispatch: function(inAction) {
-        this.isDispatching && nx.error(MSG.DISPATH);
+        this.isDispatching && nx.error(MSG.DISPATCH);
 
         try {
           this.isDispatching = true;
