@@ -1,5 +1,4 @@
-(function () {
-
+(function() {
   'use strict';
 
   var gulp = require('gulp');
@@ -12,10 +11,10 @@
    * http://www.jianshu.com/p/d616d3bf391f
    */
 
-  gulp.task('bump', function () {
-    gulp.src(['./*.json'])
+  gulp.task('bump', function() {
+    gulp
+      .src(['./*.json'])
       .pipe($.bump())
       .pipe(gulp.dest('./'));
   });
-
-}());
+})();

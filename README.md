@@ -1,12 +1,12 @@
 # redux-lite
 > Lightweight version of the redux library
 
-## install:
+## installation
 ```bash
 npm install -S afeiship/redux-lite --registry=https://registry.npm.taobao.org
 ```
 
-## apis:
+## apis
 | api       | args                   | description                |
 |-----------|------------------------|----------------------------|
 | INIT_TYPE | -                      | @@redux/INIT_0.g5t24hclwrt |
@@ -16,7 +16,7 @@ npm install -S afeiship/redux-lite --registry=https://registry.npm.taobao.org
 | subscribe | listener               | redux.subscribe            |
 | dispatch  | action                 | redux.dispatch             |
 
-## usage:
+## usage
 ```js
 import ReduxLite from 'redux-lite';
 
