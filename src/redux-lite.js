@@ -11,7 +11,7 @@
     DISPATCH: 'Reducers may not dispatch actions.'
   };
 
-  var NxReduxCore = nx.declare('nx.ReduxLite', {
+  var NxReduxLite = nx.declare('nx.ReduxLite', {
     statics: {
       INIT_TYPE: INIT_TYPE,
       create: function(inReducer, inInitialState) {
@@ -82,6 +82,6 @@
   });
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = NxReduxCore;
+    module.exports = NxReduxLite;
   }
 })();

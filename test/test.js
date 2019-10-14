@@ -15,10 +15,10 @@
         test: 123
       });
 
-      console.log('store:->', store);
+      // console.log('store:->', store);
 
       // initialize:
-      console.log(store.getState());
+      // console.log(store.getState());
 
       store.subscribe(function() {
         console.log('test sub:->>>', store.getState());
