@@ -42,15 +42,12 @@
           return inEnhancer(this);
         }
 
-        this.initState();
+        this.dispatch({ type: INIT_TYPE });
       },
       ensureCanMutateNextListeners: function () {
         if (this.nextListeners === this.currentListeners) {
           this.nextListeners = this.currentListeners.slice();
         }
-      },
-      initState: function () {
-        this.dispatch({ type: INIT_TYPE });
       },
       getState: function () {
         this.isDispatching && nx.error(MSG.GET_STATE);
