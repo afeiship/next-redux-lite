@@ -1,8 +1,7 @@
-(function() {
-  var global = global || this || window || Function('return this')();
-  var nx = global.nx || require('next-js-core2');
-  var nxExports = nx.exports || require('next-exports');
-  var PUBLIC_METHODS = ['initState', 'getState', 'subscribe', 'dispatch'];
+(function () {
+  var global = typeof window !== 'undefined' ? window : this || Function('return this')();
+  var nx = global.nx || require('@jswork/next');
+  var nxCompose = nx.compose || require('@jswork/next-compose');
   var RANDOM_STR = Math.random().toString(36);
   var INIT_TYPE = '@@redux/INIT_' + RANDOM_STR;
   var MSG = {
@@ -13,38 +12,49 @@
 
   var NxReduxLite = nx.declare('nx.ReduxLite', {
     statics: {
-      INIT_TYPE: INIT_TYPE,
-      create: function(inReducer, inInitialState) {
-        var store = new this(inReducer, inInitialState);
-        return nxExports(PUBLIC_METHODS, store, {});
+      create: function (inReducer, inInitialState, inEnhancer) {
+        return new this(inReducer, inInitialState, inEnhancer);
+      },
+      apply: function () {
+        var middlewares = nx.slice(arguments);
+        return (store) => {
+          var dispatch = store.dispatch.bind(store);
+          var chain = middlewares.map((middleware) => middleware(store));
+          dispatch = nxCompose.apply(store, chain)(dispatch);
+          return (store.dispatch = dispatch);
+        };
       }
     },
     methods: {
-      init: function(inReducer, inInitialState) {
+      init: function (inReducer, inInitialState, inEnhancer) {
         this.currentReducer = inReducer;
         this.currentState = inInitialState;
         this.currentListeners = [];
         this.nextListeners = this.currentListeners;
         this.isDispatching = false;
 
-        // When a store is created, an "INIT" action is dispatched so that every
-        // reducer returns their initial state. This effectively populates
-        // the initial state tree.
+        if (typeof inEnhancer !== 'undefined') {
+          if (typeof inEnhancer !== 'function') {
+            throw new Error('Expected the enhancer to be a function.');
+          }
+          return inEnhancer(this);
+        }
+
         this.initState();
       },
-      ensureCanMutateNextListeners: function() {
+      ensureCanMutateNextListeners: function () {
         if (this.nextListeners === this.currentListeners) {
           this.nextListeners = this.currentListeners.slice();
         }
       },
-      initState: function() {
+      initState: function () {
         this.dispatch({ type: INIT_TYPE });
       },
-      getState: function() {
+      getState: function () {
         this.isDispatching && nx.error(MSG.GET_STATE);
         return this.currentState;
       },
-      subscribe: function(inHandler) {
+      subscribe: function (inHandler) {
         this.isDispatching && nx.error(MSG.SUBSCRIBE);
         var isSubscribed = true;
         var self = this;
@@ -53,7 +63,7 @@
         this.ensureCanMutateNextListeners();
         this.nextListeners.push(inHandler);
 
-        return function() {
+        return function () {
           if (isSubscribed) {
             isSubscribed = false;
             self.ensureCanMutateNextListeners();
@@ -62,7 +72,7 @@
           }
         };
       },
-      dispatch: function(inAction) {
+      dispatch: function (inAction) {
         this.isDispatching && nx.error(MSG.DISPATCH);
 
         try {

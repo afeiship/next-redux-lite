@@ -1,8 +1,8 @@
 {
-  "name": "redux-lite",
+  "name": "@jswork/next-redux-lite",
   "version": "1.0.0",
-  "description": "Lightweight version of the redux library",
-  "homepage": "https://github.com/afeiship/redux-lite",
+  "description": "Lightweight version of the redux library.",
+  "homepage": "https://github.com/afeiship/next-redux-lite",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"
@@ -10,27 +10,35 @@
   "scripts": {
     "build": "gulp",
     "test": "jest",
-    "version": "gulp bump"
+    "release": "release-it"
   },
-  "main": "dist/redux-lite.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
-    "del": "^2.2.1",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@jswork/gulp-pkg-header": "^1.0.4",
+    "@jswork/next": "^1.0.9",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-bump": "^2.7.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-header": "^2.0.7",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-size": "^2.1.0",
-    "gulp-uglify": "^2.1.2",
-    "jest": "^23.6.0",
-    "next-nice-comments": "github:afeiship/next-nice-comments",
-    "uglify-save-license": "^0.4.1",
-    "yargs": "^4.7.1"
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-ignore": "^3.0.0",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-rename": "^2.0.0",
+    "gulp-size": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^26.6.3",
+    "release-it": "^14.2.2",
+    "uglify-js": "3.12.4",
+    "uglify-save-license": "^0.4.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "next-exports": "github:afeiship/next-exports",
-    "next-js-core2": "github:afeiship/next-js-core2"
+    "@jswork/next-compose": "^1.0.0"
   }
 }
