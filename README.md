@@ -17,7 +17,6 @@ npm install -S @jswork/next-redux-lite
 | INIT_TYPE | -                                | @@redux/INIT_0.g5t24hclwrt |
 | create    | reducers, initialState, enhancer | Create store.              |
 | apply     | middleware1,middleware2...       | Apply middlewares.         |
-| initState | -                                | dispatch INIT_TYPE state   |
 | getState  | -                                | redux.getState             |
 | subscribe | listener                         | redux.subscribe            |
 | dispatch  | action                           | redux.dispatch             |

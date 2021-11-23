@@ -40,5 +40,13 @@
   },
   "dependencies": {
     "@jswork/next-compose": "^1.0.0"
-  }
+  },
+  "keywords": [
+    "next",
+    "redux",
+    "lite",
+    "react",
+    "mini",
+    "tiny"
+  ]
 }
