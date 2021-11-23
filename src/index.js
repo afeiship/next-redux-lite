@@ -19,7 +19,9 @@
         var middlewares = nx.slice(arguments);
         return (store) => {
           var dispatch = store.dispatch.bind(store);
-          var chain = middlewares.map((middleware) => middleware(store));
+          var getState = store.getState.bind(store);
+          var middlewareAPI = { getState, dispatch: (action) => dispatch(action) };
+          var chain = middlewares.map((middleware) => middleware(middlewareAPI));
           dispatch = nxCompose.apply(store, chain)(dispatch);
           return (store.dispatch = dispatch);
         };

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NxReduxLite from '../../src';
-import logMiddleware from './middlewares/log';
+import log from './middlewares/log';
+import thunk from 'redux-thunk';
 
 const root = document.getElementById('root');
 
@@ -18,9 +19,7 @@ const reducer = (state = 0, action) => {
 };
 
 // 创建一个store
-const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(logMiddleware));
-
-console.log(store);
+const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(log, thunk));
 
 const render = () => {
   return ReactDOM.render(
@@ -28,6 +27,18 @@ const render = () => {
       <span>{store.getState()}</span>
       <button onClick={() => store.dispatch({ type: 'INCREMENT' })}>INCREMENT</button>
       <button onClick={() => store.dispatch({ type: 'DECREMENT' })}>DECREMENT</button>
+      <button
+        onClick={() =>
+          store.dispatch((dispatch) => {
+            setTimeout(() => {
+              dispatch({
+                type: 'INCREMENT',
+              });
+            }, 200);
+          })
+        }>
+        THUNK delay increase
+      </button>
     </div>,
     root
   );
