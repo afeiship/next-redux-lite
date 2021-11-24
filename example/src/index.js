@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import NxReduxLite from '../../src';
 import log from './middlewares/log';
+import stateThunk from './middlewares/thunk';
 import thunk from 'redux-thunk';
 import { logger1, logger2, logger3 } from './middlewares/logger-sequence';
 
@@ -20,7 +21,7 @@ const reducer = (state = 0, action) => {
 };
 
 // 创建一个store
-const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(logger1, logger2, logger3, thunk));
+const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(log, stateThunk));
 
 const render = () => {
   return ReactDOM.render(
@@ -30,7 +31,8 @@ const render = () => {
       <button onClick={() => store.dispatch({ type: 'DECREMENT' })}>DECREMENT</button>
       <button
         onClick={() =>
-          store.dispatch((dispatch) => {
+          store.dispatch((dispatch, state) => {
+            console.log('from state thunk:', state);
             setTimeout(() => {
               dispatch({
                 type: 'INCREMENT',

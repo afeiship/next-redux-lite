@@ -1,5 +1,5 @@
 export const logger1 = (store) => (next) => (action) => {
-  console.log('进入log1');
+  console.log('进入log1', store.getState());
   let result = next(action);
   console.log('离开log1');
   return result;

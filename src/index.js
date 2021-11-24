@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var global = typeof window !== 'undefined' ? window : this || Function('return this')();
   var nx = global.nx || require('@jswork/next');
   var nxCompose = nx.compose || require('@jswork/next-compose');
@@ -13,10 +13,10 @@
 
   var NxReduxLite = nx.declare('nx.ReduxLite', {
     statics: {
-      create: function(inReducer, inInitialState, inEnhancer) {
+      create: function (inReducer, inInitialState, inEnhancer) {
         return new this(inReducer, inInitialState, inEnhancer);
       },
-      apply: function() {
+      apply: function () {
         var middlewares = nx.slice(arguments);
         return (store) => {
           var dispatch = store.dispatch.bind(store);
@@ -29,7 +29,7 @@
       }
     },
     methods: {
-      init: function(inReducer, inInitialState, inEnhancer) {
+      init: function (inReducer, inInitialState, inEnhancer) {
         this.currentReducer = inReducer;
         this.currentState = inInitialState;
         this.currentListeners = [];
@@ -43,16 +43,16 @@
 
         this.dispatch({ type: INIT_TYPE });
       },
-      ensureCanMutateNextListeners: function() {
+      ensureCanMutateNextListeners: function () {
         if (this.nextListeners === this.currentListeners) {
           this.nextListeners = this.currentListeners.slice();
         }
       },
-      getState: function() {
+      getState: function () {
         this.isDispatching && nx.error(MSG.GET_STATE);
         return this.currentState;
       },
-      subscribe: function(inHandler) {
+      subscribe: function (inHandler) {
         this.isDispatching && nx.error(MSG.SUBSCRIBE);
         var isSubscribed = true;
         var self = this;
@@ -61,7 +61,7 @@
         this.ensureCanMutateNextListeners();
         this.nextListeners.push(inHandler);
 
-        return function() {
+        return function () {
           if (isSubscribed) {
             isSubscribed = false;
             self.ensureCanMutateNextListeners();
@@ -70,7 +70,7 @@
           }
         };
       },
-      dispatch: function(inAction) {
+      dispatch: function (inAction) {
         this.isDispatching && nx.error(MSG.DISPATCH);
 
         try {
