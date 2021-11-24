@@ -7,6 +7,7 @@
   var MSG = {
     GET_STATE: 'You may not call store.getState() while the reducer is executing.',
     SUBSCRIBE: 'You may not call store.subscribe() while the reducer is executing.',
+    ENHANCER: 'Expected the enhancer to be a function.',
     DISPATCH: 'Reducers may not dispatch actions.'
   };
 
@@ -36,9 +37,7 @@
         this.isDispatching = false;
 
         if (typeof inEnhancer !== 'undefined') {
-          if (typeof inEnhancer !== 'function') {
-            throw new Error('Expected the enhancer to be a function.');
-          }
+          typeof inEnhancer !== 'function' && nx.error(MSG.ENHANCER);
           return inEnhancer(this);
         }
 

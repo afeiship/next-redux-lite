@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "gulp",
-    "test": "jest",
+    "start": "cd example && npm run start",
     "release": "release-it"
   },
   "main": "dist/index.js",
