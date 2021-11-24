@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NxReduxLite from '../../src';
 import log from './middlewares/log';
 import thunk from 'redux-thunk';
+import { logger1, logger2, logger3 } from './middlewares/logger-sequence';
 
 const root = document.getElementById('root');
 
@@ -19,7 +20,7 @@ const reducer = (state = 0, action) => {
 };
 
 // 创建一个store
-const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(log, thunk));
+const store = NxReduxLite.create(reducer, 10, NxReduxLite.apply(logger1, logger2, logger3, thunk));
 
 const render = () => {
   return ReactDOM.render(
